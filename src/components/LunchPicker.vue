@@ -2,19 +2,10 @@
 <div>
   <p>เลือกประเภทอาหาร</p>
   <v-form lazy-validation>
-    <v-checkbox
-     label="ไก่"
-     v-model="catagories" value="ไก่" :rules="[validate_menus]"
-    />
-    <v-checkbox
-     label="หมู"
-     v-model="catagories" value="หมู" :rules="[validate_menus]"/>
-     <v-checkbox
-     label="กุ้ง"
-     v-model="catagories" value="กุ้ง" :rules="[validate_menus]"/>
+     <v-checkbox v-for="c in Object.keys(this.availableCatagories)" :key="c" v-model="catagories" :value="c" :rules="[validate_menus]" :label="c"/>
      <v-btn @click="randomPick" color="primary">สุ่ม</v-btn>
   </v-form>
-  <h3 v-if="this.isPicked">{{this.pickedMenus}}</h3>
+  <h3 v-if="this.catagories.length > 0">{{this.pickedMenus}}</h3>
 </div>
 </template>
 
@@ -28,6 +19,7 @@ export default {
       pickedMenus: "",
       menus: [],
       isPicked: false,
+      availableCatagories: foods
     }
   },
   methods: {
@@ -38,7 +30,7 @@ export default {
       })
       selections = flatten(selections)
       this.pickedMenus = sample(selections)
-      this.isPicked= !(this.isPicked)
+      //this.isPicked= !(this.isPicked)
     },
     validate_menus() {
       return this.catagories.length > 0 ? true : "เลือกอย่างน้อย 1 อย่าง"
