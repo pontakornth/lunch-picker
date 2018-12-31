@@ -1,6 +1,6 @@
 {
-  "name": "lunch-picker",
-  "short_name": "lunch-picker",
+  "name": "Lunch Picker",
+  "short_name": "Lunch Picker",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
