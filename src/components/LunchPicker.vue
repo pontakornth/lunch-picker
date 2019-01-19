@@ -24,12 +24,14 @@ export default {
   },
   methods: {
     randomPick() {
+      this.pickedMenus = "รอสักครู่"
       let selections = []
       this.catagories.forEach(catagory => {
         selections.push(foods[catagory])
       })
       selections = flatten(selections)
-      this.pickedMenus = sample(selections)
+      setTimeout(() => {this.pickedMenus = sample(selections)},500)
+      
       //this.isPicked= !(this.isPicked)
     },
     validate_menus() {
